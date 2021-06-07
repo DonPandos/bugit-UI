@@ -1,0 +1,18 @@
+<div class="header flex">
+  <div class="logo">BUGIT LOGO</div>
+  <div class="auth" *ngIf="!authService.isAuthorized()">
+    <app-button text="Sign in" color="primary" (onClick)="onSignInClick()">
+
+    </app-button>
+    <app-button text="Sign up" color="basic" (onClick)="onSignUpClick()">
+
+    </app-button>
+  </div>
+
+  <div *ngIf="authService.isAuthorized()">
+    {{this.authService.getUsername()}}
+    <app-button text="Logout" color="primary" (onClick)="onLogout()">
+
+    </app-button>
+  </div>
+</div>

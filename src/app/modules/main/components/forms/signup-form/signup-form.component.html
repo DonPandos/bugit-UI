@@ -1,0 +1,9 @@
+<div class="form flex flex-direction-column">
+  <form [formGroup]="form" (submit)="onSubmit()" *ngIf="!authService.isAuthorized()">
+    <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+    <app-button type="submit" text="Sign up" color="primary"></app-button>
+  </form>
+  <div *ngIf="authService.isAuthorized()">
+    <p>You've already logged in</p>
+  </div>
+</div>
