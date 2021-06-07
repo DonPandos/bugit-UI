@@ -1,0 +1,5 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+  <app-button type="submit" text="Create" color="primary"></app-button>
+  <app-button text="close" (onClick)="close()"></app-button>
+</form>

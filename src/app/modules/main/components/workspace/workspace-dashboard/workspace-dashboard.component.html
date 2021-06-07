@@ -1,0 +1,5 @@
+<div class="flex flex-direction-column">
+  <div *ngFor="let project of projects">
+    <app-workspace-dashboard-item [project]="project" (onItemClick)="onClick($event)"></app-workspace-dashboard-item>
+  </div>
+</div>

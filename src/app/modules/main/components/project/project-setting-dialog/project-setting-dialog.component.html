@@ -1,0 +1,39 @@
+<div class="root flex flex-direction-column">
+  <div class="header flex">
+    <div>
+      <h1>
+        Project name: {{data.projectName}}
+      </h1>
+    </div>
+  </div>
+  <div class="flex add-user">
+    <form [formGroup]="form" (submit)="onAddMemberSubmit()" class="root">
+      <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+      <app-button type="submit" text="Add member" color="primary"></app-button>
+    </form>
+  </div>
+  <h3>Members: </h3>
+  <mat-expansion-panel *ngFor="let user of users">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{user.firstname + ' ' + user.lastname + '(' + user.username + ')'}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="members-roles flex flex-direction-row">
+      <div class="role-checkbox">
+        <mat-checkbox
+          [checked]="hasRole(user, 'READ')" (change)="changeUserRoles(user, 'READ', $event.checked)">READ</mat-checkbox>
+      </div>
+      <div class="role-checkbox" >
+        <mat-checkbox
+          [checked]="hasRole(user, 'WRITE')" (change)="changeUserRoles(user, 'WRITE', $event.checked)">WRITE</mat-checkbox>
+      </div>
+      <div class="role-checkbox" >
+        <mat-checkbox
+          [checked]="hasRole(user, 'OWNER')" (change)="changeUserRoles(user, 'OWNER', $event.checked)">OWNER</mat-checkbox>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</div>
+<app-button text="Close" (onClick)="close()"></app-button>
+

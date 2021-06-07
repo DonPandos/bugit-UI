@@ -1,0 +1,9 @@
+<div class="root flex flex-direction-column" (click)="onClick()">
+  <h3 class="name">{{issue.name}}</h3>
+  <h5 class="description">{{issue.description}}</h5>
+  <p>Priority: <span class="issue-color-{{issue.priority.toLowerCase()}}">{{issue.priority}}</span></p>
+  <div class="footer flex flex-direction-column issue-info">
+    <p class="assignee-info">{{issue.assignee.firstName + ' ' + issue.assignee.lastName}}</p>
+    <p class="issue-number">{{issue.issueNumber}}</p>
+  </div>
+</div>

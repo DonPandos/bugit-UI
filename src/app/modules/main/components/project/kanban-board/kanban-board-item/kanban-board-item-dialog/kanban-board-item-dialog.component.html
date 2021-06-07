@@ -1,0 +1,87 @@
+<div class="root">
+  <div class="primary">
+    <div class="issue-number">
+      <h4>{{issue.issueNumber}}</h4>
+    </div>
+    <div>
+      <h1>{{issue.name}}</h1>
+    </div>
+    <div>
+      {{issue.description}}
+    </div>
+    <div class="comments">
+      <h3 style="font-weight: bold">Comments: </h3>
+      <div *ngFor="let comment of comments">
+        <div class="comment">
+          <div class="commentator">
+            {{comment.owner.firstName + ' ' + comment.owner.lastName + '(' + comment.owner.username + '):'}}
+          </div>
+          <div class="comment-text">
+            {{comment.text}}
+          </div>
+        </div>
+      </div>
+      <div class="add-comment">
+        <mat-form-field class="comment-input" appearance="fill">
+          <mat-label>Leave a comment</mat-label>
+          <textarea matInput #comment placeholder="Comment text"></textarea>
+        </mat-form-field>
+        <app-button color="primary" text="Add comment" (onClick)="addComment(comment)"></app-button>
+      </div>
+    </div>
+  </div>
+  <div class="secondary">
+    <div class="action-panel">
+      <app-button color="primary" text="Log time" (onClick)="showLogTimeDialog()"></app-button>
+      <app-button text="Close" (onClick)="close()"></app-button>
+    </div>
+    <div class="info-panel">
+      <div class="item">
+        <div class="label">Status:</div>
+        <div class="info">{{issue.status}}</div>
+      </div>
+      <div class="item">
+        <div class="label">Priority</div>
+        <div class="info issue-color-{{issue.priority.toLowerCase()}}">{{issue.priority}}</div>
+      </div>
+      <div class="item">
+        <div class="label">Estimated time:</div>
+        <div class="info">{{parseInterval(issue.originalEstimate)}}</div>
+      </div>
+      <div class="item">
+        <div class="label">Time remaining:</div>
+        <div class="info">{{parseInterval(issue.timeRemaining)}}</div>
+      </div>
+      <div class="item">
+        <div class="label">Time logged:</div>
+        <div class="info">{{parseInterval(issue.loggedTime)}}</div>
+      </div>
+      <div class="item">
+        <div class="label">
+          Assignee:
+        </div>
+        <div class="info" *ngIf="!authService.hasProjectRole(getProjectByIssue(issue.issueNumber), 'WRITE')">
+          {{issue.assignee.firstName + ' ' + issue.assignee.lastName + '(' + issue.assignee.username + ')'}}
+        </div>
+        <div class="info" *ngIf="authService.hasProjectRole(getProjectByIssue(issue.issueNumber), 'WRITE')">
+          <mat-form-field >
+            <mat-label>Assignee</mat-label>
+            <mat-select [(value)]="issue.assignee.username" (selectionChange)="changeAssignee($event)">
+              <mat-option *ngFor="let member of members" [value]="member.username">
+                {{member.username}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="item">
+        <div class="label">
+          Reporter:
+        </div>
+        <div class="info">
+          {{issue.reporter.firstName + ' ' + issue.reporter.lastName + '(' + issue.reporter.username + ')'}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

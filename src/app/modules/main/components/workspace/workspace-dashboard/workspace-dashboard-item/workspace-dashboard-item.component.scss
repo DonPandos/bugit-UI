@@ -1,0 +1,9 @@
+.root {
+  border-bottom: 1px solid grey;
+  min-height: 10vh;
+}
+
+.root:hover {
+  cursor: pointer;
+  color: darkblue;
+}

@@ -1,0 +1,72 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  min-width: 1000px;
+  max-height: 90vh;
+
+  .primary {
+    flex: 2;
+
+    .issue-number {
+      color: #858585;
+    }
+
+    .comments {
+      max-height: 50%;
+      overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px;
+
+      mat-form-field {
+        width: 100%;
+      }
+      .comment {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+      }
+    }
+  }
+  .secondary {
+    flex: 1;
+    margin-left: 20px;
+    .action-panel {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .info-panel {
+      display: flex;
+      flex-direction: column;
+
+      .item {
+        display: flex;
+        flex-direction: row;
+        margin: 20px 0;
+        .label {
+          flex: 1;
+          font-weight: bold;
+        }
+
+        .info {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+.issue-color-low {
+  color: green;
+}
+.issue-color-medium {
+  color: orange;
+}
+.issue-color-high {
+  color: darkred;
+}
+.issue-color-highest {
+  color: red;
+}

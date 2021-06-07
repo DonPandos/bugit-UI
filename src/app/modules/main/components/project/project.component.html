@@ -1,0 +1,16 @@
+<div class="root flex flex-direction-column">
+  <section class="project-header flex flex-direction-row">
+    <div *ngIf="this.authService.hasProjectRole(projectName, 'write')" class="create-issue">
+      <app-button text="Create issue" color="primary" (onClick)="openCreateIssueDialog()"></app-button>
+    </div>
+    <div *ngIf="this.authService.hasProjectRole(projectName, 'owner')" class="project-settings">
+      <app-button text="Project settings" color="primary" (onClick)="openProjectSettingDialog()">
+      </app-button>
+    </div>
+  </section>
+  <section>
+    <app-kanban-board projectName="{{ projectName }}" [board]="board">
+
+    </app-kanban-board>
+  </section>
+</div>

@@ -1,0 +1,10 @@
+<section class="root flex flex-direction-column">
+  <div class="create-button">
+    <app-button class="h" text="Create project" color="primary" (onClick)="openCreateProjectModalWindow()">
+
+    </app-button>
+  </div>
+  <app-workspace-dashboard [projects]="projects" (onItemClick)="onItemClick($event)">
+
+  </app-workspace-dashboard>
+</section>
